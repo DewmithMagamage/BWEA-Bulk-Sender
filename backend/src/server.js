@@ -1,15 +1,25 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const QRCode = require('qrcode');
 const puppeteer = require('puppeteer');
 
 const app = express();
 
-// CORS configuration - allow requests from same origin in production
+// Parse allowed origins from env (comma separated)
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean)
+  : null;
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' ? false : true,
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // same-origin or curl
+    if (!allowedOrigins || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 };
 app.use(cors(corsOptions));
@@ -18,8 +28,11 @@ app.use(express.json());
 // Serve static files from frontend build in production
 let staticPath = null;
 if (process.env.NODE_ENV === 'production') {
-  staticPath = path.join(__dirname, '../../frontend/dist');
-  app.use(express.static(staticPath));
+  const candidate = path.join(__dirname, '../../frontend/dist');
+  if (fs.existsSync(candidate)) {
+    staticPath = candidate;
+    app.use(express.static(staticPath));
+  }
 }
 
 // Simple in-memory state

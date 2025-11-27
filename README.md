@@ -42,6 +42,7 @@ Open the printed local URL in your browser, scan the QR code with your WhatsApp,
 - **cPanel**: See **[CPANEL_DEPLOYMENT.md](./CPANEL_DEPLOYMENT.md)** and **[DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)**.
   - ⚠️ Shared cPanel often lacks Puppeteer/Chromium support. Use VPS or another platform if needed.
 - **Render.com**: Fully supported and easiest path. See **[RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)** for a step-by-step guide and use the included `render.yaml`.
+- **Hybrid (Railway backend + cPanel frontend)**: See **[HYBRID_DEPLOYMENT_RAILWAY_CPANEL.md](./HYBRID_DEPLOYMENT_RAILWAY_CPANEL.md)**.
 - **Quick references**: `QUICK_START_CPANEL.md`, `DEPLOYMENT_SUMMARY.md`.
 
 > **Note**: This project uses an unofficial integration (`whatsapp-web.js`) which may be against WhatsApp's Terms of Service for certain uses. Use it only for your own account, at your own risk.
