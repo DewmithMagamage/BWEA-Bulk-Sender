@@ -1,0 +1,24 @@
+{
+  "name": "bwea-bulk-sender",
+  "version": "1.0.0",
+  "description": "BWEA WhatsApp Bulk Message Sender",
+  "main": "backend/src/server.js",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "whatsapp",
+    "bulk-sender",
+    "messaging"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+

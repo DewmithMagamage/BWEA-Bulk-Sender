@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: bwea-bulk-sender
+    env: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_URL
+        value: ""
+      - key: WHATSAPP_SESSION_PATH
+        value: "./.wwebjs_auth"
+    autoDeploy: true
+
